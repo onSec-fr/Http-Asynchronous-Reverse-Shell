@@ -69,10 +69,10 @@ Only 3 out of 69 products were able to detect the client as malicious, without a
 ### Demonstration
 <a name="demo"></a>
 
-#####Client side
+**Client side**
 [![](https://github.com/onSec-fr/Http-Asynchronous-Reverse-Shell/blob/master/Images/client_demo.gif?raw=true)](https://github.com/onSec-fr/Http-Asynchronous-Reverse-Shell/blob/master/Images/client_demo.gif?raw=true)
 
-#####Server side
+**Server side**
 [![](https://github.com/onSec-fr/Http-Asynchronous-Reverse-Shell/blob/master/Images/server_demo.gif?raw=true)](https://github.com/onSec-fr/Http-Asynchronous-Reverse-Shell/blob/master/Images/server_demo.gif?raw=true)
 
 ------------
@@ -80,7 +80,7 @@ Only 3 out of 69 products were able to detect the client as malicious, without a
 ### Configuration
 <a name="config"></a>
 
-####Client : C Sharp
+**Client : C Sharp**
 
 1. Open *HARS.sln* in Visual Studio
 
@@ -133,7 +133,7 @@ The client should be generated in `Http Asynchronous Reverse Shell\HARS_Client\H
 
 ------------
 
-####Server : Python
+**Server : Python**
 
 **HARS_Server.py**
 Location : `Http Asynchronous Reverse Shell\HARS_Server\www`
