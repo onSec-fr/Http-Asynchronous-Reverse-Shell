@@ -28,9 +28,9 @@ The HTTP protocol is the most used by a standard user. Moreover it is almost nev
 3) The server accepts the connection.
 
 Then: 
-.The client queries the server until it gets instructions.
-.The attacker provides instructions to the server.
-.When a command is defined, the client executes it and returns the result.
+-The client queries the server until it gets instructions.\
+-The attacker provides instructions to the server.\
+-When a command is defined, the client executes it and returns the result.
 
 And so on, until the attacker decides to end the session.
 [![](https://github.com/onSec-fr/Http-Asynchronous-Reverse-Shell/blob/master/Images/Concept.png?raw=true)](https://github.com/onSec-fr/Http-Asynchronous-Reverse-Shell/blob/master/Images/Concept.png?raw=true)
@@ -149,8 +149,8 @@ Simply change the port or location on the certificate if needed in the config se
 `python HARS_Server.py`
 
 #### Notes
-.HTTP Logs are located in `Http Asynchronous Reverse Shell\HARS_Server\logs`
-.You can add your own templates (any html page) in `Http Asynchronous Reverse Shell\HARS_Server\templates`
+-HTTP Logs are located in `Http Asynchronous Reverse Shell\HARS_Server\logs`\
+-You can add your own templates (any html page) in `Http Asynchronous Reverse Shell\HARS_Server\templates`
 
 ------------
 @onSec-fr
