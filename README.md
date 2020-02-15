@@ -29,7 +29,9 @@ The HTTP protocol is the most used by a standard user. Moreover it is almost nev
 
 Then: 
 -The client queries the server until it gets instructions.
+&nbsp;
 -The attacker provides instructions to the server.
+&nbsp;
 -When a command is defined, the client executes it and returns the result.
 
 And so on, until the attacker decides to end the session.
@@ -150,6 +152,7 @@ Simply change the port or location on the certificate if needed in the config se
 
 #### Notes
 -HTTP Logs are located in `Http Asynchronous Reverse Shell\HARS_Server\logs`
+&nbsp;
 -You can add your own templates (any html page) in `Http Asynchronous Reverse Shell\HARS_Server\templates`
 
 ------------
