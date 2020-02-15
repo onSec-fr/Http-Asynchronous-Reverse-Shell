@@ -27,7 +27,8 @@ The HTTP protocol is the most used by a standard user. Moreover it is almost nev
 2) The client initiates the connection with the server.
 3) The server accepts the connection.
 
-Then:\ 
+Then:
+&nbsp;
 -The client queries the server until it gets instructions.\
 -The attacker provides instructions to the server.\
 -When a command is defined, the client executes it and returns the result.
