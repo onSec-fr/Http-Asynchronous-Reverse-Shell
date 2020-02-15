@@ -9,7 +9,7 @@ Table of contents
 
 ------------
 
-<div id='intro'/>  
+<div id='intro'/>
 ### Why ?
 
 Today there are many ways to create a reverse shell in order to be able to remotely control a machine through a firewall. Indeed, outgoing connections are not always filtered.
@@ -41,7 +41,7 @@ This tool is only intended to be a proof of concept demonstration tool for autho
 
 ------------
 
-<div id='features'/>  
+<div id='features'/>
 ### Features
 
 Today, as a poc, the following functionalities are implemented: 
@@ -66,7 +66,7 @@ Only 3 out of 69 products were able to detect the client as malicious, without a
 
 ------------
 
-<div id='demo'/>  
+<div id='demo'/>
 ### Demonstration
 
 #####Client side
@@ -77,7 +77,7 @@ Only 3 out of 69 products were able to detect the client as malicious, without a
 
 ------------
 
-<div id='config'/>  
+<div id='config'/>
 ### Configuration
 
 ####Client : C Sharp
