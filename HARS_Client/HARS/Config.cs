@@ -14,7 +14,7 @@ namespace HARS
         public static int MaxDelay = 5;
         public static string Url = "search?q=search+something&qs=n&form=QBRE&cvid=";
         // Listener
-        public static string Server = "https://192.168.24.79";
+        public static string Server = "https://127.0.0.1";
         public static string Port = "443";
         public static bool AllowInsecureCertificate = true;
     }

