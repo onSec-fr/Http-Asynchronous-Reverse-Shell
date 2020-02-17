@@ -35,6 +35,7 @@ namespace HARS
                 Environment.Exit(0);
             // Set state to minimized
             this.WindowState = FormWindowState.Minimized;
+            this.Opacity = 0.0;
             // Hide app from taskbar
             this.ShowInTaskbar = false;
             // Init shell process
