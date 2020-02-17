@@ -122,7 +122,7 @@ Here you can customize the assembly information and an icon for the file.
 
 [![](https://github.com/onSec-fr/Http-Asynchronous-Reverse-Shell/blob/master/Images/project_config.png?raw=true)](https://github.com/onSec-fr/Http-Asynchronous-Reverse-Shell/blob/master/Images/project_config.png?raw=true)
 
-Note : Target .NET framework version is 3.5 which is available by default in Windows 7.
+Note : Target .NET framework version is 3.5 which is available by default in Windows 7.  
 *For Windows 10, choose .NET 4.6 if you don't want to have to install missing features*
 
 #### Build
