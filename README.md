@@ -159,8 +159,13 @@ Simply change the port or location on the certificate if needed in the config se
 `python HARS_Server.py`
 
 #### Notes
+
 -HTTP Logs are located in `Http Asynchronous Reverse Shell\HARS_Server\logs`\  
 -You can add your own templates (any html page) in `Http Asynchronous Reverse Shell\HARS_Server\templates`
+
+#### Review
+
+A good review from the defender side by Lee Kirkpatric : https://community.rsa.com/community/products/netwitness/blog/2020/04/01/using-rsa-netwitness-to-detect-http-asynchronous-reverse-shell-hars
 
 ------------
 @onSec-fr
