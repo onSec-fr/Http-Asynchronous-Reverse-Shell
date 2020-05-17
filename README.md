@@ -1,4 +1,4 @@
-# HTTP Asynchronous Reverse Shell
+# HTTP/S Asynchronous Reverse Shell
 
 Table of contents
 
@@ -14,11 +14,11 @@ Table of contents
 
 Today there are many ways to create a reverse shell in order to be able to remotely control a machine through a firewall. Indeed, outgoing connections are not always filtered.
 
-However security software and hardware (IPS, IDS, Proxy, AV, EDR...) are more and more powerful and can detect these attacks.
-Most of the time the connection to a reverse shell is established through a TCP or UDP tunnel.
+However security software and hardware (IPS, IDS, Proxy, AV, EDR...) are more and more powerful and can detect those attacks. Most of the time the connection to a reverse shell is established through a L4 TCP tunnel.
 
-I figured that the best way to stay undetected would be to make it look like legitimate traffic. 
-The HTTP protocol is the most used by a standard user. Moreover it is almost never filtered so as not to block access to websites.
+I figured that the best way to stay undetected would be to make it look like legitimate traffic. The HTTP protocol (Layer 7) is the most used by a standard user. Moreover it is almost never filtered so as not to block access to websites.
+
+The particularity of this POC is that the communication is completely asynchronous, and it only uses GET requests.
 
 [![](https://github.com/onSec-fr/Http-Asynchronous-Reverse-Shell/blob/master/Images/Architecture.png?raw=true)](https://github.com/onSec-fr/Http-Asynchronous-Reverse-Shell/blob/master/Images/Architecture.png?raw=true)
 
