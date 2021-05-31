@@ -76,7 +76,7 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             self.wfile.write("Not found")
     
     # Save logs
-    log_file = open('../logs/logs.txt', 'w')
+    log_file = open('../logs/logs.txt', 'w', True)
     def log_message(self, format, *args):
         self.log_file.write("%s - - [%s] %s\n" %(self.client_address[0],self.log_date_time_string(),format%args))
         
