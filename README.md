@@ -166,8 +166,9 @@ Simply change the port or location on the certificate if needed in the config se
 #### Review
 
 A good review from the defender side by Lee Kirkpatric : https://community.rsa.com/community/products/netwitness/blog/2020/04/01/using-rsa-netwitness-to-detect-http-asynchronous-reverse-shell-hars  
-Another deep analysis from Nasreddine Bencherchali : https://nasbench.medium.com/understanding-detecting-c2-frameworks-hars-682b30f0505c
+Another deep analysis from Nasreddine Bencherchali : https://nasbench.medium.com/understanding-detecting-c2-frameworks-hars-682b30f0505c  
 Ty Guys  
+
 #BlueTeam  
 
 ------------
