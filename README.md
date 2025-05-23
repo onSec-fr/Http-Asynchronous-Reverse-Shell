@@ -1,73 +1,53 @@
 # HTTP/S Asynchronous Reverse Shell
 
-Table of contents
-
- 1. [Introduction](#intro)
- 2. [Features](#features)
- 3. [Demonstration](#demo)
- 4. [Configuration](#config)
+![Banner](https://github.com/onSec-fr/Http-Asynchronous-Reverse-Shell/blob/master/Images/Architecture.png?raw=true)
 
 ------------
 
-### Why ? 
-<a name="intro"></a>
+### ✨ Introduction
 
-Today there are many ways to create a reverse shell in order to be able to remotely control a machine through a firewall. Indeed, outgoing connections are not always filtered.
+In an age where advanced detection systems such as IDS, IPS, EDR, AV, and firewalls dominate corporate networks, evading them during offensive security assessments is a challenge. Most reverse shells leverage TCP tunnels (L4), which are now routinely analyzed and flagged.
 
-However security software and hardware (IPS, IDS, Proxy, AV, EDR...) are more and more powerful and can detect those attacks. Most of the time the connection to a reverse shell is established through a L4 TCP tunnel.
+**This project presents an innovative solution**: a completely asynchronous reverse shell over HTTP/S that blends into normal web traffic by mimicking legitimate user behavior.
 
-I figured that the best way to stay undetected would be to make it look like legitimate traffic. The HTTP protocol (Layer 7) is the most used by a standard user. Moreover it is almost never filtered so as not to block access to websites.
+Unlike traditional reverse shells, it only uses **GET requests**, appears as **normal web queries**, and can optionally run over **HTTPS with a fake legitimate certificate**, minimizing the chances of detection.
 
-The particularity of this POC is that the communication is completely asynchronous, and it only uses GET requests.
-
-[![](https://github.com/onSec-fr/Http-Asynchronous-Reverse-Shell/blob/master/Images/Architecture.png?raw=true)](https://github.com/onSec-fr/Http-Asynchronous-Reverse-Shell/blob/master/Images/Architecture.png?raw=true)
+------------
 
 ### How it works ?
-1) The client app is executed on the target machine.
-2) The client initiates the connection with the server.
-3) The server accepts the connection.
+1. The client app is executed on the target machine.
+2. The client initiates the connection with the server.
+3. The server accepts the connection - then :
+> The client queries the server until it gets instructions.\
+> The attacker provides instructions to the server.\
+> When a command is defined, the client executes it and returns the result.  
+> And so on, until the attacker decides to end the session.
 
-Then:  
--The client queries the server until it gets instructions.\
--The attacker provides instructions to the server.\
--When a command is defined, the client executes it and returns the result.
-
-And so on, until the attacker decides to end the session.
 [![](https://github.com/onSec-fr/Http-Asynchronous-Reverse-Shell/blob/master/Images/Concept.png?raw=true)](https://github.com/onSec-fr/Http-Asynchronous-Reverse-Shell/blob/master/Images/Concept.png?raw=true)
 
 ### Disclaimer
 
-This tool is only intended to be a proof of concept demonstration tool for authorized security testing. Make sure you check with your local laws before running this tool.
+*This tool is only intended to be a proof of concept demonstration tool for authorized security testing. Make sure you check with your local laws before running this tool.*
+
+### 🔧 Features
+
+**Today, as a poc, the following functionalities are implemented:**
+
+* Stealthy GET-only communication.
+* Mimics Bing.com traffic.
+* Base64-encoded commands in HTML.
+* Exfiltration via HTTP cookies.
+* Optional HTTPS with spoofed cert.
+* Random delays and templates per request.
+* Single PowerShell process reuse to evade EDR.
+* Compatible with CMD & PowerShell commands.
+* Optional fake error message popup.
+* Hidden from Task Manager.
+* Optional admin-level execution.
 
 ------------
 
-### Features 
-<a name="features"></a>
-
-Today, as a poc, the following functionalities are implemented: 
-
-1. Fake HTTP traffic to appear as searches on bing.com.
-2. Commands are base64 encoded in the HTML response.
-3. The result of the commands is encoded in base64 as a cookie by the client.
-4. [Optional] SSL support; by default it is a fake bing.com certificate.
-5. Random delay between each client call to avoid triggering IDSs.
-6. Random template is used for each response from the server.
-7. Re-use of the same powershell process to avoid triggering EDRs.
-8. Support for all Cmd and Powershell commands.
-9. [Optional] The client can display a fake error message at startup.
-10. The client is hidden from tasks manager.
-11. [Optional] The client can be run as an administrator.
-
-##### AV Detection
-
-Only 3 out of 69 products were able to detect the client as malicious, without applying any evasive or obfuscation techniques.
-
-[![](https://github.com/onSec-fr/Http-Asynchronous-Reverse-Shell/blob/master/Images/av_detection.png?raw=true)](https://github.com/onSec-fr/Http-Asynchronous-Reverse-Shell/blob/master/Images/av_detection.png?raw=true)
-
-------------
-
-### Demonstration
-<a name="demo"></a>
+### 🎥 Demonstration
 
 **Client side**
 [![](https://github.com/onSec-fr/Http-Asynchronous-Reverse-Shell/blob/master/Images/client_demo.gif?raw=true)](https://github.com/onSec-fr/Http-Asynchronous-Reverse-Shell/blob/master/Images/client_demo.gif?raw=true)
@@ -77,17 +57,14 @@ Only 3 out of 69 products were able to detect the client as malicious, without a
 
 ------------
 
-### Configuration
-<a name="config"></a>
+### ⚙️ Configuration
 
-**Client : C Sharp**
+#### Client (C#)
 
-1. Open *HARS.sln* in Visual Studio
+1. Open `HARS.sln` in Visual Studio.
+2. Edit `Config.cs` to match your environment:
 
-**Config.cs**
-
-This file contains parameters ; Assign the values you want :
-
+```csharp
     class Config
         {
             /* Behavior */
@@ -111,19 +88,11 @@ This file contains parameters ; Assign the values you want :
             // Allow self-signed or "unsecure" certificates - Warning : often needed in corporate environment using proxy
             public static bool AllowInsecureCertificate = true;
         }
+```
 
-**HARS.manifest**
+**Optional:** Edit `HARS.manifest` to adjust privilege level.
 
-Change this line to run by default the client with certain privileges : 
-
-`<requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />`  
-
-With  
-`<requestedExecutionLevel  level="asInvoker" uiAccess="false" />`  
-or  
-`<requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />`  
-or  
-`<requestedExecutionLevel  level="highestAvailable" uiAccess="false" />`  
+> `requestedExecutionLevel` can be set to `asInvoker`, `highestAvailable`, or `requireAdministrator`.
 
 **Projet properties**
 
@@ -143,33 +112,32 @@ The client should be generated in `Http Asynchronous Reverse Shell\HARS_Client\H
 
 ------------
 
-**Server : Python**
+#### Server (Python)
 
-**HARS_Server.py**
-Location : `Http Asynchronous Reverse Shell\HARS_Server\www`
+1. Edit `HARS_Server.py` in `HARS_Server/www/` to customize port or certificate path.
 
-Simply change the port or location on the certificate if needed in the config section.
+```python
+PORT = 443
+CERT_FILE = '../server.pem'
+```
 
-    # Config
-    PORT = 443
-    CERT_FILE = '../server.pem'
+2. Run with:
 
-#### Run
-
-`python HARS_Server.py`
+```bash
+python HARS_Server.py
+```
 
 #### Notes
 
 -HTTP Logs are located in `Http Asynchronous Reverse Shell\HARS_Server\logs`\  
 -You can add your own templates (any html page) in `Http Asynchronous Reverse Shell\HARS_Server\templates`
 
-#### Review
+### 🔗 References
 
-A good review from the defender side by Lee Kirkpatric : https://community.rsa.com/community/products/netwitness/blog/2020/04/01/using-rsa-netwitness-to-detect-http-asynchronous-reverse-shell-hars  
-Another deep analysis from Nasreddine Bencherchali : https://nasbench.medium.com/understanding-detecting-c2-frameworks-hars-682b30f0505c  
-Ty Guys  
+* [RSA NetWitness Detection Review by Lee Kirkpatric](https://community.rsa.com/community/products/netwitness/blog/2020/04/01/using-rsa-netwitness-to-detect-http-asynchronous-reverse-shell-hars)
+* [Deep Dive Analysis by Nasreddine Bencherchali](https://nasbench.medium.com/understanding-detecting-c2-frameworks-hars-682b30f0505c)
 
-#BlueTeam  
+---
 
 ------------
 @onSec-fr
